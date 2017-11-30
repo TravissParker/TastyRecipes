@@ -1,0 +1,36 @@
+.header {
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2%;
+}
+
+.figure-dish {
+    width: 80%;
+    margin: auto;
+ }
+
+.figure-dish img {
+    display: block; /*display block (not inline-block) paired with margin: auto give center-H.*/
+    /*margin: auto; !*Don't need this one, since I fill figure with image and center figure instead.*!*/
+    width: 100%; /*Need a size to be able to be responsive*/
+}
+
+.figure-dish figcaption {
+    font-style: italic;
+    padding-top: 1%;
+}
+
+section {
+    line-height: 150%;
+}
+
+.description {
+    margin-top: 3%;
+}
+
+
+

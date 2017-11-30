@@ -1,0 +1,48 @@
+#top-wrap {
+    text-align:center;
+    height: 30px;
+}
+
+nav {
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    font-family: inherit;
+
+}
+
+nav a {
+    display: inline-block;
+    color: whitesmoke;
+    padding: 14px 16px;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+nav a:hover:not(.current-page)  {
+    background-color: #111;
+}
+
+nav .current-page {
+    background-color: antiquewhite;
+    color: #333;
+}
+
+nav li {
+    list-style: none;
+    display: inline-block;
+}
+
+.sign-in-status, .logout-btn {
+    float:left;
+    font-size: 1em;
+    color: whitesmoke;
+    padding-top: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+

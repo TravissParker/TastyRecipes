@@ -1,0 +1,114 @@
+ol {
+    list-style: decimal; /*initial to some set standard or the browsers standard*/
+}
+
+ul {
+    list-style: disc;
+}
+
+section {
+    /*display: block;*/
+    /*text-align: left;*/
+    /*width: 90%;*/
+    margin-top: 5%;
+    min-width: 500px;   /*Should be the lower bound of task*/
+    max-width: 700px;
+}
+
+.class {
+    overflow: hidden;
+}
+
+.dish img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+figcaption {
+    font-style: italic;
+}
+
+/*This should be in base*/
+main {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rooster {
+    margin-top: 10%;
+    width: 80%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.8;
+    color: #444444;
+}
+
+#comment-section-outer {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date-from {
+    width: 90%;
+}
+
+.date, .from {
+    display: inline-block;
+}
+/*This should be extracted to its own stylesheet: comment*/
+.post {
+   background-color: navajowhite;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.post p {
+    float: left;
+    margin: 2px;
+}
+
+.user-pic-fig img {
+    width: 12%;
+    height: auto;
+    margin: 0;
+}
+
+.img-comment {
+    width: 90%;
+    /*align-items: left;*/
+}
+
+.user-pic-fig {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    width: 15%;
+}
+
+.user-pic-fig img {
+    width: 100%;
+    height: auto;
+}
+
+.comment {
+    width: 85%;
+    float: left;
+    /*text-align: right;*/
+    /*display: inline-block;*/
+}

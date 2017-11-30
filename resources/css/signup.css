@@ -1,0 +1,20 @@
+.form-wrap {
+    width: 200px;
+    border: none;
+    margin: auto;
+}
+
+input {
+    /*display: block;*/
+    margin: 4px auto;
+}
+
+button {
+    /*display: block;*/
+    /*margin: 4px auto;*/
+}
+
+.error-msg {
+    font-style: italic;
+    color: red;
+}

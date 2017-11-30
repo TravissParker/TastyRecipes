@@ -1,0 +1,14 @@
+.login-buttons {
+    margin: 4px;
+}
+
+input {
+    margin: 4px auto;
+}
+
+.error-msg {
+    font-style: italic;
+    color: red;
+    clear:both;
+}
+

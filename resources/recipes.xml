@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cookbook version="46">
+
+    <recipe>
+        <title>Meatballs</title>
+        <preptime>15 min</preptime>
+        <cooktime>20 min</cooktime>
+        <totaltime>35 min</totaltime>
+        <description>
+            <li>A delicious classic of Scandinavia: meatballs are right monday through sunday.</li>
+            <li>A pancake (or hotcake, griddlecake, or flapjack) is a flat cake, often thin and round.</li>
+        </description>
+        <ingredient>
+            <li>1 lb lean (at least 80%) ground beef</li>
+            <li>1/2 cup Italian-style bread crumbs</li>
+            <li>1/4 cup milk</li>
+            <li>1/4 cup milk</li>
+            <li>1/2 teaspoon Worcestershire sauce</li>
+            <li>1/4 teaspoon pepper</li>
+            <li>1 small onion, finely chopped (1/4 cup)</li>
+            <li>1 egg</li>
+        </ingredient>
+        <recipetext>
+            <li>Heat oven to 400°F. Line 13x9-inch pan with foil; spray with cooking spray.</li>
+            <li>In large bowl, mix all ingredients. Shape mixture into 20 to 24 (1 1/2-inch) meatballs. Place 1 inch apart in pan.</li>
+            <li>Bake uncovered 18 to 22 minutes or until no longer pink in center.</li>
+        </recipetext>
+        <url>http://www.recipeurl</url>
+        <video>http://www.videourl</video>
+        <quantity>4</quantity>
+        <imagepath>resources/images/img_meatballs.jpg</imagepath>
+        <comments>Your comments</comments>
+        <source>Source</source>
+        <video>Video URL</video>
+        <nutrition>
+            <li>Nutritional information</li>
+        </nutrition>
+        <rating>5</rating>
+        <category>category 1</category>
+        <category>category 2</category>
+    </recipe>
+
+    <recipe>
+        <title>Pancakes</title>
+        <preptime>10 min</preptime>
+        <cooktime>20 min</cooktime>
+        <totaltime>30 min</totaltime>
+        <ingredient>
+            <li>1 1/2 cups all-purpose flour</li>
+            <li>3 1/2 teaspoons baking powder</li>
+            <li>1 teaspoon salt</li>
+            <li>1 tablespoon white sugar</li>
+            <li>1 1/4 cups milk</li>
+            <li>1 egg</li>
+            <li>3 tablespoons butter, melted</li>
+        </ingredient>
+        <recipetext>
+            <li>In a large bowl, sift together the flour, baking powder, salt and sugar.
+                Make a well in the center and pour in the milk, egg and melted butter; mix until smooth.</li>
+            <li>Heat a lightly oiled griddle or frying pan over medium high heat.
+                Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake.
+                Brown on both sides and serve hot.</li>
+        </recipetext>
+        <imagepath>resources/images/img_pancakes.jpg</imagepath>
+        <imageurl>resources/images/img_pancakes.jpg</imageurl>
+        <comments></comments>
+        <source>Grandma</source>
+        <video></video>
+        <nutrition></nutrition>
+        <rating>4</rating>
+        <category>Dessert</category>
+    </recipe>
+
+</cookbook>

@@ -1,0 +1,106 @@
+.page-wrap {
+    padding-bottom: 470px;
+}
+
+header {
+    text-align: center;
+    background-color: #333333;
+    color: whitesmoke;
+    width: 80%;
+    margin: auto;
+}
+
+#calendar {
+    margin: auto;
+    /*margin-bottom: 100px;*/
+    width: 80%;
+}
+
+#calendar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#calendar li {
+    display: block;
+    float: left;
+    width: 14.342%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #6c6c6c;
+    margin-right: -1px;
+    margin-bottom: -1px;
+}
+
+#calendar ul.weekdays {
+    height: 40px;
+    background: whitesmoke;
+}
+
+#calendar ul.weekdays li {
+    text-align: center;
+    line-height: 20px;
+    border: none; /*Needed?*/
+    padding: 10px 6px; /*Needed?*/
+    color: #333333;
+    font-size: inherit;
+}
+
+#calendar .days li {
+    height: 90px;
+    background: whitesmoke;
+}
+
+#calendar .days li:hover {
+    background: antiquewhite;
+}
+
+#calendar .date {
+    text-align: center;
+    margin-bottom: 5px;
+    padding: 4px;
+    background-color: #333;
+    color: #fff;
+    width: 20px;
+    border-radius: 50%; /*Makes it circular*/
+    float: left;
+}
+/*Don't know why this doesn't override other*/
+#calendar .other-month {
+    background: #20af5a;
+    color: #666;
+}
+
+.img-link {
+    width: 50%;
+    height: auto;
+    padding-left: 20%;
+}
+
+@media (max-width: 480px) {
+    #calendar .weekdays, #calendar .other-month {
+        display: none;
+    }
+
+    #calendar li {
+        /*height: auto;*/
+        border: 1px solid #ededed;
+        width: 100%;    /*This makes the li's to stretch and make it to a list*/
+        padding: 10px;
+        margin-bottom: -1px;
+    }
+
+    #calender .date {
+        /*float: none;*/
+    }
+    .img-link {
+        height: 50px;
+        width: auto;
+    }
+
+    .page-wrap {
+        padding-bottom: 2700px;
+    }
+}

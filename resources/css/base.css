@@ -1,0 +1,97 @@
+body {
+    font-family: "Californian FB", serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    color: black;
+    background-color: white;
+    background-image: linear-gradient(90deg, rgba(200,0,0,.5) 50%, transparent 50%),
+        linear-gradient(rgba(200,0,0,.5) 50%, transparent 50%);
+    background-size: 50px 50px;
+    min-width: 320px;
+    /*overflow: hidden;*/
+}
+
+a {
+    cursor: pointer;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+}
+
+html, body {
+    /*height: 100%;*/
+}
+
+img {
+    margin-bottom:0;
+}
+
+.page-wrap {
+    /*height: 100%;*/
+    width: 70%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*Keeps page-wrap centered H*/
+    background-color: antiquewhite;
+    /*padding-bottom: 2000px;*/
+    /*margin: auto auto -1000px;*/
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    /*overflow: hidden;*/
+
+}
+
+/*A uniform text wrapper*/
+.page-wrap > .text-wrap {
+    width: 60%;
+    margin: auto; /*Keeps text-wrap centered H*/
+}
+
+h3 {
+    font-size: 2rem;
+    padding-top: 2%; /*Is this ok responsively*/
+    padding-bottom: 1%;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul {
+    list-style: disc;
+}
+
+button {
+    background-color: whitesmoke;
+    border-radius: 0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: block; /*This makes the comment button centered, but moves down login...*/
+}
+
+button:hover {
+    background-color: #ccc;
+    border-color: whitesmoke;
+    color: whitesmoke;
+}
+
+@media only screen and (max-width: 480px) {
+    .page-wrap {
+        width: 90%;
+        height: 100%;
+    }
+
+    .page-wrap > .text-wrap {
+        width: 85%;
+    }
+
+    h3 {
+        font-size: 1.1em;
+        font-weight: bold;
+        padding-top: 8%; /*Is this ok responsively*/
+        padding-bottom: 4%;
+    }
+}
