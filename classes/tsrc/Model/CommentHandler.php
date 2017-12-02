@@ -19,7 +19,7 @@ class CommentHandler
 
     public function setComment($author, $date, $message, $recipe)
     {
-        if (InputValidator::fieldIsEmpty($message) || InputValidator::controlCharacters($message)) {
+        if (InputValidator::fieldIsEmpty($message)) {
             return false; //If the message is empty, false is return and set to the next view, preventing the "Comment posted below" message.
         }
         $message = InputValidator::vetInput($message);

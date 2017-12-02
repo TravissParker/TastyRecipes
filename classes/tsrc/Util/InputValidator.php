@@ -14,11 +14,6 @@ class InputValidator
         return 0 !== strcmp($string1, $string2) ? true : false;
     }
 
-    public static function controlCharacters($string)
-    {
-        return !ctype_print($string);
-    }
-
     public static function vetInput($input)
     {
         $input = trim($input);
