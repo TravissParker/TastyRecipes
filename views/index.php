@@ -31,14 +31,14 @@
         <h2>Pancake party!!!</h2>
         <p>Check out our latest recipe: Pancakes, a treat as breakfast
           , lunch, dinner, and anything in between!<br />
-          <a href="pancakes.php">Go to recipe for pancakes</a>!</p>
+          <a href="Pancakes">Go to recipe for pancakes</a>!</p>
       </div>
 
       <div class="calendar-promo">
         <h2>Featuring planned eating</h2>
         <p>Struggling to decide what to eat on a daily basis, maybe you need some inspiration?
         Check out our calendar filled with the best Tasty Recipes has to offer!<br />
-        <a href="calendar.php">Go to calendar</a>!</p>
+        <a href="Calendar">Go to calendar</a>!</p>
       </div>
       <figure><img src="../../resources/images/manyfood.jpg" alt="A cornucopia of delicious food" /> </figure>
     </section>

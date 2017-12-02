@@ -1,34 +1,28 @@
 <?php
 
 namespace tsrc\Model;
-
 class InputValidator
 {
     public static function fieldIsEmpty($string)
     {
         return (empty($string) ? true : false);
     }
-    //Deprecated
-    public static function fieldsEmpty($shuttle)
-    {
-
-        foreach ($shuttle->getArray() as $key => $value) {
-            if (empty($value)) {
-                echo '<br>empty index found for: ';
-                echo $key;
-                $shuttle->setErrorMsg($key, "This field is required");
-//                echo $shuttle->getError('usernameError');
-            }
-        }
-    }
 
     public static function stringsNotEqual($string1, $string2)
     {
-//        $string1 = $shuttle->getPassword();
-//        $string2 = $shuttle->getPasswordR();
-        if (0 !== strcmp($string1, $string2)) {
-//            $shuttle->setErrorMsg('passwordMismatch', "Passwords doesn't match");
-            return true;
-            }
+        return 0 !== strcmp($string1, $string2) ? true : false;
+    }
+
+    public static function controlCharacters($string)
+    {
+        return !ctype_print($string);
+    }
+
+    public static function vetInput($input)
+    {
+        $input = trim($input);
+        $input = stripslashes($input);
+        $input = htmlentities($input);
+        return $input;
     }
 }

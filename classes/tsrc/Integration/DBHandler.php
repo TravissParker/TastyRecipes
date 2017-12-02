@@ -3,6 +3,7 @@
 
 namespace tsrc\Integration;
 
+require 'C:/Server/data/DBCredentials.php';
 
 class DBHandler
 {
@@ -14,16 +15,20 @@ class DBHandler
     private $setCommentStmt;
     private $getCommentStmt;
     private $deleteCommentStmt;
+    private $getPassword;
 
     private function createConnection()
     {
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $this->database = new \mysqli('localhost', DBCredentials::DB_USERNAME, DBCredentials::DB_PASSWORD, self::DB_NAME);
-        $this->createStmnts();
+        if ($this->database == null) {
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+            $this->database = new \mysqli('localhost', DBCredentials::DB_USERNAME, DBCredentials::DB_PASSWORD, self::DB_NAME);
+            $this->createStmts();
+        }
     }
 
-    private function createStmnts() {
-        $this->findUserStmt      = $this->database->prepare("SELECT * FROM users WHERE user_name = ? AND user_password = ?");
+    private function createStmts()
+    {
+        $this->findUserStmt      = $this->database->prepare("SELECT * FROM users WHERE user_name = ?");
         $this->insertUserStmt    = $this->database->prepare("INSERT INTO users (user_name, user_password) VALUE (?, ?)");
         $this->findNameStmt      = $this->database->prepare("SELECT * FROM users WHERE user_name = ?");
         $this->setCommentStmt    = $this->database->prepare("INSERT INTO comment (com_user, com_date, com_msg, com_recipe) VALUES (?, ?, ?, ?)");
@@ -40,20 +45,23 @@ class DBHandler
 
     public function findUser($username, $password)
     {
-        if ($this->database == null){
-            $this->createConnection();
-        }
-        $this->findUserStmt->bind_param('ss', $username, $password);
+        $this->createConnection();
+        $this->findUserStmt->bind_param('s', $username);
         $this->findUserStmt->execute();
 
-        return $this->findUserStmt->get_result()->num_rows > 0;
+        $result = $this->findUserStmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if (($result->num_rows > 0) And (password_verify($password, $row['user_password']))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function usernameTaken($username)
     {
-        if ($this->database == null){
-            $this->createConnection();
-        }
+        $this->createConnection();
         $this->findNameStmt->bind_param('s', $username);
         $this->findNameStmt->execute();
         $result = ($this->findNameStmt->get_result()->num_rows) > 0;
@@ -62,18 +70,14 @@ class DBHandler
 
     public function setComment($author, $date, $message, $recipe)
     {
-        if ($this->database == null){
-            $this->createConnection();
-        }
+        $this->createConnection();
         $this->setCommentStmt->bind_param('ssss', $author, $date, $message, $recipe);
         $this->setCommentStmt->execute();
     }
 
     public function extractComments($recipe)
     {
-        if ($this->database == null){
-            $this->createConnection();
-        }
+        $this->createConnection();
         $this->getCommentStmt->bind_param('s', $recipe);
         $this->getCommentStmt->execute();
         $result = $this->getCommentStmt->get_result();
@@ -83,9 +87,7 @@ class DBHandler
 
     public function deleteComment($comId)
     {
-        if ($this->database == null){
-            $this->createConnection();
-        }
+        $this->createConnection();
         $this->deleteCommentStmt->bind_param('i', $comId);
         $this->deleteCommentStmt->execute();
     }

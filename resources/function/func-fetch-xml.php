@@ -1,12 +1,4 @@
 <?php
-/*
- * $index is used to determine which recipe is to be fetched.
- * [0] - Meatballs
- * [1] - Pancakes
- */
-//
-//$filePath = "resources/recipes.xml";
-//$xml = simplexml_load_file($filePath) or die("Couldn't load file");
 
 function getXMLFile() {
     $filePath = "resources/recipes.xml";

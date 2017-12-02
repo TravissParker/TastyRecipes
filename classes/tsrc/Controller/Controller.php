@@ -1,5 +1,4 @@
 <?php
-//Todo: add more ternary operators
 namespace tsrc\Controller;
 
 use tsrc\Integration\DBHandler;
@@ -23,7 +22,7 @@ class Controller
     {
         $this->userHandler->loginUser($shuttle);
     }
-    //Todo: implement logout - now in firstpage, is that ok? - Should be a dedicated function but it is OK.
+
     public function logoutUser()
     {
         //Logout = invalidated session, it does what my script did - it should be in readme file.
@@ -36,7 +35,7 @@ class Controller
 
     public function setComment($author, $date, $message, $recipe)
     {
-        $this->commentHandler->setComment($author, $date, $message, $recipe);
+        return $this->commentHandler->setComment($author, $date, $message, $recipe);
     }
 
     public function deleteComment($comID)

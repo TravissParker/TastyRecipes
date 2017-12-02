@@ -53,7 +53,7 @@
         <li class="day"><div class="date">9</div></li>
         <li class="day"><div class="date">10</div></li>
         <li class="day"><div class="date">11</div>
-          <a href="../../recipes-meatballs.php">
+          <a href="Meatballs">
             <img class="img-link" src="../../resources/images/img_meatballs.jpg" alt="Food of the day: meatballs"/>
           </a>
         </li>
@@ -75,7 +75,7 @@
       <ul class="days">
         <li class="day"><div class="date">20</div></li>
         <li class="day"><div class="date">21</div>
-          <a href="../../recipes-pancakes.php">
+          <a href="Pancakes">
             <img class="img-link" src="../../resources/images/img_pancakes.jpg" alt="Food of the day: pancakes"/>
           </a>
         </li>

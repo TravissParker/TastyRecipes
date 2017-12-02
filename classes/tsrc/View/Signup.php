@@ -1,16 +1,14 @@
 <?php
 
+
 namespace tsrc\View;
 
-use Id1354fw\View\AbstractRequestHandler;
 use tsrc\Model\Shuttle;
-use tsrc\Util\Constants;
-//Question: How to solve the shuttle being null problem: if construct isn't run then shuttle is gone? This must be understood. But now it works!?! Arggghh!
-class Signup extends AbstractRequestHandler
+class Signup extends RequestHandler
 {
     private $shuttle;
     private $signupBtnFromLogin;
-    private $registerBtn;
+    private $submitRegistration;
 
     public function __construct()
     {
@@ -35,26 +33,27 @@ class Signup extends AbstractRequestHandler
     }
 
     public function setRegisterSubmit($registerBtn) {
-        $this->registerBtn = $registerBtn;
+        $this->submitRegistration = true;
     }
-    //Todo: passwords still needs to hashed, and de-hashed in login... where to do - where does this abstraction belong?
     protected function doExecute()
     {
-        if ($this->session->get(Constants::USERNAME) != null) {
-            $this->addVariable(Constants::USERNAME, $this->session->get(Constants::USERNAME));
-        }
+        $this->storeUser();
 
-        $ctrl = $this->session->get(Constants::CTRL);
-        if (isset($this->registerBtn)) {
+        $ctrl = $this->getController();
+        if ($this->submitRegistration == true) {
+            $this->submitRegistration = false;
             $ctrl->registerUser($this->shuttle);
             if ($this->shuttle->getOutcome() == false) {
                 $this->addVariable('usernameError', $this->shuttle->getError('usernameError'));
                 $this->addVariable('passwordError', $this->shuttle->getError('passwordError'));
                 $this->addVariable('passwordErrorR', $this->shuttle->getError('passwordErrorR'));
                 $this->addVariable('passwordMismatch', $this->shuttle->getError('passwordMismatch'));
+                $this->addVariable('controlChar', $this->shuttle->getError('controlChar'));
+                $this->shuttle = null; //Since password is stored here we set it too null just to be sure
                 return 'Signup';
             } else {
                 $this->addVariable('signupSuccess', true);
+                $this->shuttle = null; //Since password is stored here we set it too null just to be sure
                 return 'Login';
             }
         }

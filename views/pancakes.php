@@ -32,8 +32,7 @@
       </figure>
       <section class="description">
         <p>
-<!--          Fixme: pancake description doesn't work?-->
-          <?php getDescription(1) ?>
+            <?php getDescription(1) ?>
         </p>
       </section>
       <section>

@@ -2,7 +2,6 @@
 
 namespace tsrc\Model;
 
-//Question: in which namespace should we place this?
 class Shuttle
 {
     private $username;
@@ -16,7 +15,8 @@ class Shuttle
                           "passwordError"=>"",
                           "userNotFound"=>"",
                           "passwordRError"=>"",
-                          "passwordMismatch"=>"");
+                          "passwordMismatch"=>"",
+                          "controlChar"=>"");
     }
 
     public function setUsername($username) {

@@ -17,7 +17,6 @@
   <div class="page-wrap">
     <div class="text-wrap">
       <div class="form-wrap">
-<!--        <form method="post" action="../resources/function/func-signup.php">-->
         <form action="Signup" method="post">
           Username:
           <input type="text" name="newUsername" placeholder="Username">
@@ -31,6 +30,7 @@
           <input type="password" name="newPasswordR" placeholder="Retype password">
           <span class="error-msg"> * <?php echo $passwordErrorR ?></span>
           <p class="error-msg"><?php echo $passwordMismatch ?></p>
+          <p class="error-msg"><?php echo $controlChar ?></p>
           <button type="submit" name="registerSubmit">Sign up</button>
         </form>
       </div>

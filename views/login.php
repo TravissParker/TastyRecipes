@@ -30,6 +30,7 @@
         <input type="password" name="userPassword" placeholder="password">
         <span class="error-msg"> * <?php echo $passwordError ?></span>
         <p class="error-msg"><?php echo $loginError ?></p>
+        <p class="error-msg"><?php echo $controlChar ?></p>
         <button class="login-buttons" type="submit" name="submitLogin">Login</button>
         <br/>
       </form>

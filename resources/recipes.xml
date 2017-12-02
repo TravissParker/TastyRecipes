@@ -8,7 +8,6 @@
         <totaltime>35 min</totaltime>
         <description>
             <li>A delicious classic of Scandinavia: meatballs are right monday through sunday.</li>
-            <li>A pancake (or hotcake, griddlecake, or flapjack) is a flat cake, often thin and round.</li>
         </description>
         <ingredient>
             <li>1 lb lean (at least 80%) ground beef</li>
@@ -45,6 +44,9 @@
         <preptime>10 min</preptime>
         <cooktime>20 min</cooktime>
         <totaltime>30 min</totaltime>
+        <description>
+            <li>A pancake (or hotcake, griddlecake, or flapjack) is a flat cake, often thin and round.</li>
+        </description>
         <ingredient>
             <li>1 1/2 cups all-purpose flour</li>
             <li>3 1/2 teaspoons baking powder</li>

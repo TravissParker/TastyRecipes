@@ -18,8 +18,12 @@ class CommentHandler
 
     public function setComment($author, $date, $message, $recipe)
     {
-        //Fixme: we must vlidate empty message
+        if (InputValidator::fieldIsEmpty($message) || InputValidator::controlCharacters($message)) {
+            return false; //If the message is empty, false is return and set to the next view, preventing the "Comment posted below" message.
+        }
+        $message = InputValidator::vetInput($message);
         $this->dbHandler->setComment($author, $date, $message, $recipe);
+        return true;
     }
 
     public function getComments($recipe)
@@ -32,9 +36,7 @@ class CommentHandler
             $comment->setDate($row['com_date']);
             $comment->setMsg($row['com_msg']);
             $comment->setComID($row['com_id']);
-
             array_push($this->comments, $comment);
-//            $this->comments = $comment;//Does this work?
         }
         return $this->comments;
     }
