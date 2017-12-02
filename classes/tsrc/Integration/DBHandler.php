@@ -15,7 +15,6 @@ class DBHandler
     private $setCommentStmt;
     private $getCommentStmt;
     private $deleteCommentStmt;
-    private $getPassword;
 
     private function createConnection()
     {

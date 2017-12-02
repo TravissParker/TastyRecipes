@@ -23,11 +23,6 @@ class Controller
         $this->userHandler->loginUser($shuttle);
     }
 
-    public function logoutUser()
-    {
-        //Logout = invalidated session, it does what my script did - it should be in readme file.
-    }
-
     public function registerUser($shuttle)
     {
         $this->userHandler->registerUser($shuttle);

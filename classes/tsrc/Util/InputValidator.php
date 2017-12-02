@@ -1,6 +1,7 @@
 <?php
 
-namespace tsrc\Model;
+namespace tsrc\Util;
+
 class InputValidator
 {
     public static function fieldIsEmpty($string)

@@ -4,6 +4,7 @@ namespace tsrc\Model;
 
 
 use tsrc\Integration\DBHandler;
+use tsrc\Util\InputValidator;
 
 class UserHandler
 {
@@ -14,19 +15,13 @@ class UserHandler
         $this->dbHandler = new DBHandler();
     }
 
-    public function routineValidation($shuttle)
+    private function routineValidation($shuttle)
     {
         if (InputValidator::fieldIsEmpty($shuttle->getUsername())) {
             $shuttle->setErrorMsg('usernameError', 'This field is required');
         }
         if (InputValidator::fieldIsEmpty($shuttle->getPassword())) {
             $shuttle->setErrorMsg('passwordError', 'This field is required');
-        }
-        if (InputValidator::controlCharacters($shuttle->getUsername())) {
-            $shuttle->setErrorMsg('controlChar', 'Control characters were found in the input');
-        }
-        if (InputValidator::controlCharacters($shuttle->getPassword())) {
-            $shuttle->setErrorMsg('controlChar', 'Control characters were found in the input');
         }
     }
 
@@ -52,6 +47,12 @@ class UserHandler
 
         $this->routineValidation($shuttle);
 
+        if (InputValidator::controlCharacters($shuttle->getUsername())) {
+            $shuttle->setErrorMsg('controlChar', 'Control characters were found in the username');
+        }
+        if (InputValidator::controlCharacters($shuttle->getPassword())) {
+            $shuttle->setErrorMsg('controlChar', 'Control characters were found in the password');
+        }
         if (InputValidator::fieldIsEmpty($shuttle->getPasswordR())) {
             $shuttle->setErrorMsg('passwordErrorR', 'This field is required');
         }

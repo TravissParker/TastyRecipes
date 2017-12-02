@@ -4,6 +4,7 @@ namespace tsrc\Model;
 
 
 use tsrc\Integration\DBHandler;
+use tsrc\Util\InputValidator;
 
 class CommentHandler
 {
