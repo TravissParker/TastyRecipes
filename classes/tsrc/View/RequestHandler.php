@@ -9,19 +9,17 @@ use tsrc\Util\Constants;
 
 abstract class RequestHandler extends AbstractRequestHandler
 {
-
     private $loggingOut;
 
     public function getController()
     {
-        $this->session->restart(); //Hmm without this line we get error: called without server...
+        $this->session->restart();
         $ctrl = $this->session->get(Constants::CTRL);
 
         if ($ctrl == null) {
             $ctrl = new Controller();
             return $ctrl;
         }
-//        $this->session->set(Constants::CTRL, $ctrl);
         return $ctrl;
     }
 
@@ -42,7 +40,7 @@ abstract class RequestHandler extends AbstractRequestHandler
         if ($this->loggingOut == true) {
             $this->session->invalidate();
             $this->session->restart();
-            $this->loggingOut = false; // It worked without resetting this...
+            $this->loggingOut = false;
         }
     }
 

@@ -37,7 +37,6 @@ abstract class RecipeRequestHandler extends RequestHandler
     {
         $this->commentSubmitted = true;
     }
-    //Delete
 
     public function setCommentDelete($delete)
     {
