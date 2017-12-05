@@ -1,7 +1,5 @@
 <?php
-//How is the paths working!? Were are we!?
   include 'resources/fragments/frag-nav.php';
-//  include '../resouvrces/function/func-reset-errors.php';
 ?>
 
 <!DOCTYPE html>

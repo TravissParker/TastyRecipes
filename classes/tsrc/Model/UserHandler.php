@@ -42,17 +42,10 @@ class UserHandler
     }
     public function registerUser($shuttle)
     {
-
         $shuttle->setUsername(InputValidator::vetInput($shuttle->getUsername()));
 
         $this->routineValidation($shuttle);
 
-        if (InputValidator::controlCharacters($shuttle->getUsername())) {
-            $shuttle->setErrorMsg('controlChar', 'Control characters were found in the username');
-        }
-        if (InputValidator::controlCharacters($shuttle->getPassword())) {
-            $shuttle->setErrorMsg('controlChar', 'Control characters were found in the password');
-        }
         if (InputValidator::fieldIsEmpty($shuttle->getPasswordR())) {
             $shuttle->setErrorMsg('passwordErrorR', 'This field is required');
         }
