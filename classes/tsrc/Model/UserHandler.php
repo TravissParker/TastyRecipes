@@ -3,7 +3,12 @@
 namespace tsrc\Model;
 
 
+use tsrc\Exceptions\CredentialsException;
+use tsrc\Exceptions\MissingInputException;
+use tsrc\Exceptions\PasswordException;
+use tsrc\Exceptions\UsernameException;
 use tsrc\Integration\DBHandler;
+use tsrc\Util\Constants;
 use tsrc\Util\InputValidator;
 
 class UserHandler
@@ -17,52 +22,53 @@ class UserHandler
 
     private function routineValidation($shuttle)
     {
-        if (InputValidator::fieldIsEmpty($shuttle->getUsername())) {
-            $shuttle->setErrorMsg('usernameError', 'This field is required');
+        try {
+            if (InputValidator::fieldIsEmpty($shuttle->getUsername())) {
+                throw new MissingInputException(Constants::REQUIRED_FIELD);
+            }
+            if (InputValidator::fieldIsEmpty($shuttle->getPassword())) {
+                throw new MissingInputException(Constants::REQUIRED_FIELD);
+            }
+        } catch (MissingInputException $e) {
+            throw $e;
         }
-        if (InputValidator::fieldIsEmpty($shuttle->getPassword())) {
-            $shuttle->setErrorMsg('passwordError', 'This field is required');
-        }
+
     }
 
     public function loginUser($shuttle)
     {
-        $this->routineValidation($shuttle);
-
-        if ($shuttle->checkForErrors()) {
-            $shuttle->setOutcome(false);
-        } else {//If no errors are found this far, then we go on
+        try {
+            $this->routineValidation($shuttle);
             $numRows = $this->dbHandler->findUser($shuttle->getUsername(), $shuttle->getPassword());
             if ($numRows == false) {
-                $shuttle->setErrorMsg('userNotFound', "Incorrect username and/or password");
-            } else {
-                $shuttle->setOutcome(true);
+                throw new CredentialsException("Incorrect username and/or password");
             }
+        } catch (MissingInputException | CredentialsException $e) {
+            throw $e;
         }
     }
     public function registerUser($shuttle)
     {
         $shuttle->setUsername(InputValidator::vetInput($shuttle->getUsername()));
 
-        $this->routineValidation($shuttle);
-
-        if (InputValidator::fieldIsEmpty($shuttle->getPasswordR())) {
-            $shuttle->setErrorMsg('passwordErrorR', 'This field is required');
-        }
-        if (InputValidator::stringsNotEqual($shuttle->getpassword(), $shuttle->getpasswordR())) {
-            $shuttle->setErrorMsg('passwordMismatch', "The passwords doesn't match");
-        }
-        if ($shuttle->checkForErrors()) {
-            $shuttle->setOutcome(false);
-        } else {
-            $res = $this->dbHandler->usernameTaken($shuttle->getUsername());
-            if ($res == true) { //If there is a hit this will render true
-                $shuttle->setErrorMsg('usernameError', "This username is already in use");
-                $shuttle->setOutcome(false);
-            } else {
-                $this->dbHandler->registerUser($shuttle->getUsername(), password_hash($shuttle->getPassword(), PASSWORD_DEFAULT));
-                $shuttle->setOutcome(true);
+        try {
+            $this->routineValidation($shuttle);
+            if (InputValidator::fieldIsEmpty($shuttle->getPasswordR())) {
+                throw new MissingInputException(Constants::REQUIRED_FIELD);
             }
+            if (InputValidator::stringsNotEqual($shuttle->getpassword(), $shuttle->getpasswordR())) {
+                throw new PasswordException("The passwords doesn't match");
+            }
+
+            $res = $this->dbHandler->usernameTaken($shuttle->getUsername());
+            if ($res == true) {
+                throw new UsernameException("This username is already in use");
+            }
+
+            $this->dbHandler->registerUser($shuttle->getUsername(), password_hash($shuttle->getPassword(), PASSWORD_DEFAULT));
+
+        } catch (MissingInputException | PasswordException | UsernameException $e) {
+            throw $e;
         }
     }
 }

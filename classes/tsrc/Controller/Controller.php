@@ -1,9 +1,15 @@
 <?php
 namespace tsrc\Controller;
 
+use tsrc\Exceptions\MissingInputException;
+use tsrc\Exceptions\CredentialsException;
+use tsrc\Exceptions\PasswordException;
+use tsrc\Exceptions\UsernameException;
 use tsrc\Integration\DBHandler;
+use tsrc;
 use tsrc\Model\CommentHandler;
 use tsrc\Model\UserHandler;
+
 
 class Controller
 {
@@ -20,12 +26,20 @@ class Controller
 
     public function loginUser($shuttle)
     {
-        $this->userHandler->loginUser($shuttle);
+        try {
+            $this->userHandler->loginUser($shuttle);
+        } catch (MissingInputException | CredentialsException $e) {
+            throw $e;
+        }
     }
 
     public function registerUser($shuttle)
     {
-        $this->userHandler->registerUser($shuttle);
+        try {
+            $this->userHandler->registerUser($shuttle);
+        } catch (MissingInputException | PasswordException | UsernameException $e) {
+            throw $e;
+        }
     }
 
     public function setComment($author, $date, $message, $recipe)

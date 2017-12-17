@@ -3,6 +3,9 @@
 
 namespace tsrc\View;
 
+use tsrc\Exceptions\MissingInputException;
+use tsrc\Exceptions\PasswordException;
+use tsrc\Exceptions\UsernameException;
 use tsrc\Model\Shuttle;
 class Signup extends RequestHandler
 {
@@ -42,19 +45,24 @@ class Signup extends RequestHandler
         $ctrl = $this->getController();
         if ($this->submitRegistration == true) {
             $this->submitRegistration = false;
-            $ctrl->registerUser($this->shuttle);
-            if ($this->shuttle->getOutcome() == false) {
-                $this->addVariable('usernameError', $this->shuttle->getError('usernameError'));
-                $this->addVariable('passwordError', $this->shuttle->getError('passwordError'));
-                $this->addVariable('passwordErrorR', $this->shuttle->getError('passwordErrorR'));
-                $this->addVariable('passwordMismatch', $this->shuttle->getError('passwordMismatch'));
-                $this->addVariable('controlChar', $this->shuttle->getError('controlChar'));
-                $this->shuttle = null; //Since password is stored here we set it too null just to be sure
-                return 'Signup';
-            } else {
-                $this->addVariable('signupSuccess', true);
-                $this->shuttle = null; //Since password is stored here we set it too null just to be sure
+
+            try {
+                $ctrl->registerUser($this->shuttle);
                 return 'Login';
+            } catch (MissingInputException $e) {
+                $this->addVariable('usernameError', $e->getMessage());
+                $this->addVariable('passwordError', $e->getMessage());
+                $this->addVariable('passwordErrorR', $e->getMessage());
+                return 'Signup';
+            } catch (PasswordException $e) {
+                $this->addVariable('passwordMismatch', $e->getMessage());
+                return 'Signup';
+            } catch (UsernameException $e) {
+                $this->addVariable('usernameError', $e->getMessage());
+                return 'Signup';
+            }
+            finally {
+                $this->shuttle = null; //Since password is stored here we set it too null just to be sure
             }
         }
         return 'Signup';

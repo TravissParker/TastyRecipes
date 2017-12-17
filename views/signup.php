@@ -30,7 +30,6 @@
           <input type="password" name="newPasswordR" placeholder="Retype password">
           <span class="error-msg"> * <?php echo $passwordErrorR ?></span>
           <p class="error-msg"><?php echo $passwordMismatch ?></p>
-          <p class="error-msg"><?php echo $controlChar ?></p>
           <button type="submit" name="registerSubmit">Sign up</button>
         </form>
       </div>

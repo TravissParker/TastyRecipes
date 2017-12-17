@@ -2,6 +2,8 @@
 
 namespace tsrc\View;
 
+use tsrc\Exceptions\MissingInputException;
+use tsrc\Exceptions\CredentialsException;
 use tsrc\Model\Shuttle;
 use tsrc\Util\Constants;
 
@@ -34,18 +36,19 @@ class Login extends RequestHandler
             $shuttle = new Shuttle();
             $shuttle->setUsername($this->username);
             $shuttle->setPassword($this->password);
-            $ctrl->loginUser($shuttle);
 
-            if ($shuttle->getOutcome() == false) {
-                $this->addVariable('usernameError', $shuttle->getError('usernameError'));
-                $this->addVariable('passwordError', $shuttle->getError('passwordError'));
-                $this->addVariable('loginError', $shuttle->getError('userNotFound'));
-                $this->addVariable('controlChar', $shuttle->getError('controlChar'));
-                return 'Login';
-            } else {
+            try {
+                $ctrl->loginUser($shuttle);
                 $this->session->set(Constants::USERNAME, $shuttle->getUsername());
                 $this->storeUser();
                 return 'index';
+            } catch (MissingInputException $e) {
+                $this->addVariable('usernameError', $e->getMessage());
+                $this->addVariable('passwordError', $e->getMessage());
+                return 'Login';
+            } catch (CredentialsException $e) {
+                $this->addVariable('loginError', $e->getMessage());
+                return 'Login';
             }
         }
         return 'Login';
