@@ -8,7 +8,7 @@ use tsrc\Util\InputValidator;
 
 class CommentHandler
 {
-    private $comments; //array of comments
+    private $comments;
     private $dbHandler;
 
     public function __construct()
@@ -17,28 +17,28 @@ class CommentHandler
         $this->comments = Array();
     }
 
-    public function setComment($author, $date, $message, $recipe)
+    public function setComment($author, $message, $sourcePage)
     {
         if (InputValidator::fieldIsEmpty($message)) {
             return false; //If the message is empty, false is return and set to the next view, preventing the "Comment posted below" message.
         }
         $message = InputValidator::vetInput($message);
-        $this->dbHandler->setComment($author, $date, $message, $recipe);
+        $this->dbHandler->setComment($author, $message, $sourcePage);
         return true;
     }
 
-    public function getComments($recipe)
+    public function getComments($currentPage, $currentHigh)
     {
-        $result = $this->dbHandler->extractComments($recipe);
+        $result = $this->dbHandler->extractComments($currentPage, $currentHigh);
 
         while ($row = $result->fetch_assoc()) {
             $comment = new Comment();
             $comment->setAuthor($row['com_user']);
-            $comment->setDate($row['com_date']);
             $comment->setMsg($row['com_msg']);
             $comment->setComID($row['com_id']);
             array_push($this->comments, $comment);
         }
+
         return $this->comments;
     }
 

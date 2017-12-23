@@ -11,12 +11,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tasty Recipes | Meatballs</title>
 
-  <link rel="stylesheet" type="text/css" href="../../resources/css/reset.css" />
-  <link rel="stylesheet" type="text/css" href="../../resources/css/base.css" />
-  <link rel="stylesheet" type="text/css" href="../../resources/css/nav.css" />
-  <link rel="stylesheet" type="text/css" href="../../resources/css/button.css" />
+  <?php require \tsrc\Util\Constants::INCOMMON_LINKS; ?>
   <link rel="stylesheet" type="text/css" href="../../resources/css/recipe.css" />
   <link rel="stylesheet" type="text/css" href="../../resources/css/comments.css" />
+
+  <script type="text/javascript" src="../../../jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="../../../knockout-3.4.2.js"></script>
+  <script type="text/javascript" src="../../resources/jsscript/ViewModel.js"></script>
 </head>
 <body>
   <div class="page-wrap">
@@ -48,7 +49,9 @@
       </ol>
     </section>
     </div>
-    <?php include 'resources/fragments/frag-comment-section.php' ?>
+    <div id="comment-include">
+        <?php include 'resources/fragments/frag-comment-section.php' ?>
+    </div>
   </div>
 </body>
 </html>

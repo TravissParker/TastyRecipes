@@ -6,15 +6,13 @@ echo "<div class='comment-wrap'>
       <h3>Comments</h3>";
 
 if (isset($username)) {
-    echo "<form method='post' action='" . $_SERVER['REQUEST_URI'] . "'>
-        <input type='hidden' name='author' value='" . $username . "'>
-        <input type='hidden' name='date' value='" . date('Y-m-d H:i:s') . "'>
-        <input type='hidden' name='recipePage' value='" . $_SERVER['REQUEST_URI'] . "'>
-        <textarea name='message'></textarea>
-        <button type='submit' name='commentSubmit'>Comment</button>
-      </form>";
+    echo "
+        <textarea name='message' data-bind='textInput: message'></textarea>
+        <button type='submit' name='commentSubmit' data-bind='click: postComment'>Comment</button>
+      ";
 }
 
+//Todo: these two should be javascripted instead
 if ($commentPosted == true) {
     echo '<div class="comment-notification">
             <p>Your comment has been posted below!</p>

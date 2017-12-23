@@ -9,9 +9,10 @@ abstract class RecipeRequestHandler extends RequestHandler
     private $date;
     private $message;
     private $recipe;
+    private $comID;
+
     private $commentSubmitted;
     private $deleteComment;
-    private $comID;
 
     public function setAuthor($author)
     {
@@ -66,8 +67,9 @@ abstract class RecipeRequestHandler extends RequestHandler
             $this->deleteComment = false;
         }
 
-        $comments = $ctrl->showComments($_SERVER['REQUEST_URI']);
-        $this->addVariable('commentsList', $comments);
+//        $comments = $ctrl->showComments($_SERVER['REQUEST_URI']);
+//        $this->addVariable('commentsList', $comments);
+
     }
 
     abstract protected function doExecute();

@@ -42,9 +42,9 @@ class Controller
         }
     }
 
-    public function setComment($author, $date, $message, $recipe)
+    public function setComment($author, $message, $recipe)
     {
-        return $this->commentHandler->setComment($author, $date, $message, $recipe);
+        return $this->commentHandler->setComment($author, $message, $recipe);
     }
 
     public function deleteComment($comID)
@@ -52,8 +52,8 @@ class Controller
         $this->commentHandler->deleteComment($comID);
     }
 
-    public function showComments($recipe)
+    public function getComments($currentPage, $currentHigh)
     {
-        return $this->commentHandler->getComments($recipe);
+        return $this->commentHandler->getComments($currentPage, $currentHigh);
     }
 }
