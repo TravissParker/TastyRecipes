@@ -1,26 +1,16 @@
 $(document).ready(function () {
-    console.log("---Document ready --- It is alive...---");
-
-    var baseURL = 'http://localhost/TastyRecipes/tsrc/View/';
-    var commentURL = baseURL + 'GetComments';
-    var deleteURL = baseURL + 'DeleteComment';
-    var usernameURL = baseURL + 'GetUsername';
-    var postURL = baseURL + 'PostComment';
-
+    const baseURL = 'http://localhost/TastyRecipes/tsrc/View/';
+    const commentURL = baseURL + 'GetComments';
+    const deleteURL = baseURL + 'DeleteComment';
+    const usernameURL = baseURL + 'GetUsername';
+    const postURL = baseURL + 'PostComment';
 
     function MessageBoard() {
-        var self = this;
+        const self = this;
         self.signedUser = null;
-        self.comments = ko.observableArray(); //This name is bad
-        self.message = ko.observable(); //This is a 'comment' - it should be named newComment or something
+        self.comments = ko.observableArray();
+        self.post = ko.observable();
         self.newestCom = -1;
-
-        function updateNewestCom(id) {
-            if (id > self.newestCom) {
-                self.newestCom = id;
-                //Anything else?
-            }
-        }
 
         $.getJSON(usernameURL, function(username) {
             self.signedUser = username;
@@ -28,33 +18,28 @@ $(document).ready(function () {
 
         self.getComments = function () {
             $.getJSON(commentURL, "currentPage=" + window.location.href + "&currentHigh=" + self.newestCom, function(com) {
-                for (var i = 0; i < com.length; i++) {
-                    //fixme: remove quotes from msg
-                    console.log(com);
+                for (let i = 0; i < com.length; i++) {
                     com[i].author = removeQoutes(com[i].author);
                     com[i].msg = removeQoutes(com[i].msg);
-                    updateNewestCom(com[i].comID);
 
+                    if (com[i].comID > self.newestCom) {
+                        self.newestCom = com[i].comID;
+                    }
                     if (Boolean(self.signedUser)) {
                         if (com[i].author.valueOf().toLowerCase() ===
                             self.signedUser.valueOf().toLowerCase()) {
-                            com[i].trueWriter = true;
+                                com[i].trueWriter = true;
                         }
                     }
-                }//for
-                //Question: maybe we need to append the comments - now we recreate the whole msg board?
-                self.comments(com);
-                //Long polling switch
-                self.getComments();
-            });//getJson
+                    self.comments.push(com[i]);
+                }
+                self.getComments()  //Long polling switch
+            });
         };
 
         self.postComment = function () {
-            console.log("Post comment");
-            console.log(self.message);
-            $.post(postURL, "author=" + self.signedUser + "&message=" + ko.toJS(self.message) + "&recipePage=" + window.location.href);
-            self.message('');
-            console.log("Post final");
+            $.post(postURL, "author=" + self.signedUser + "&post=" + ko.toJS(self.post) + "&currentPage=" + window.location.href);
+            self.post('');
         };
 
         self.deleteComment = function (com) {

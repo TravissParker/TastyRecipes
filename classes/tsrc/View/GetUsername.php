@@ -11,9 +11,9 @@ class GetUsername extends RequestHandler
     protected function doExecute()
     {
         $username = $this->session->get(Constants::USERNAME);
-        $this->addVariable('jsonData', $username);
+        $this->addVariable(Constants::JSON_DATA, $username);
         $this->storeUser();
 
-        return 'json-view';
+        return Constants::JSON_VIEW;
     }
 }

@@ -19,7 +19,7 @@ abstract class RequestHandler extends AbstractRequestHandler
         if ($ctrl == null) {
             $ctrl = new Controller();
         }
-
+//Question: what about this...
 //        $this->session->set(Constants::CTRL, $ctrl);
 
         return $ctrl;

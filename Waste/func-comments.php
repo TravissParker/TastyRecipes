@@ -17,23 +17,9 @@
         echo    "</div>";
     }
 }*/
-
+//Todo: delete this script
 function printComments($username) {
-        echo   "<div data-bind='foreach: comments'>";
-        echo        "<div class='comment-box'>";
-        echo            "<p data-bind='text: author'><br />";
-        echo            "</p>";
-        echo            "<p data-bind='text: msg'><br />";
-        echo            "</p>";
 
-        echo         "<!-- ko if: trueWriter == true -->";
-        echo            "<p class='delete-form'>";
-        echo                "<button name='commentDelete' data-bind='click: \$parent.deleteComment'>Delete</button>";
-        echo            "</p>";
-        echo        "<!-- /ko -->";
-
-        echo        "</div>";
-        echo   "</div>";
 
 //    echo "
 //          <div data-bind='foreach: comment'>

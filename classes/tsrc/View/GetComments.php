@@ -22,9 +22,9 @@ class GetComments extends RequestHandler
     {
         $ctrl = $this->getController();
         $comJSON = $ctrl->getComments($this->currentPage, $this->currentHigh);
-        $this->addVariable('jsonData', $comJSON);
+        $this->addVariable(Constants::JSON_DATA, $comJSON);
         $this->storeUser();
 
-        return 'json-view';
+        return Constants::JSON_VIEW;
     }
 }

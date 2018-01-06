@@ -20,7 +20,7 @@ class CommentHandler
     public function setComment($author, $message, $sourcePage)
     {
         if (InputValidator::fieldIsEmpty($message)) {
-            return false; //If the message is empty, false is return and set to the next view, preventing the "Comment posted below" message.
+            return false; //If the post is empty, false is return and set to the next view, preventing the "Comment posted below" post.
         }
         $message = InputValidator::vetInput($message);
         $this->dbHandler->setComment($author, $message, $sourcePage);

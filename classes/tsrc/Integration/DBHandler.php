@@ -3,8 +3,6 @@
 
 namespace tsrc\Integration;
 
-use tsrc\Util\Constants;
-
 require 'C:/Server/data/DBCredentials.php';
 
 class DBHandler
@@ -37,7 +35,7 @@ class DBHandler
         $this->insertUserStmt    = $this->database->prepare("INSERT INTO users (user_name, user_password) VALUE (?, ?)");
         $this->findNameStmt      = $this->database->prepare("SELECT * FROM users WHERE user_name = ?");
         $this->setCommentStmt    = $this->database->prepare("INSERT INTO comment (com_user, com_msg, com_recipe) VALUES (?, ?, ?)");
-        $this->getCommentStmt    = $this->database->prepare("SELECT * FROM comment WHERE com_recipe = ?");
+        $this->getCommentStmt    = $this->database->prepare("SELECT * FROM comment WHERE com_recipe = ? AND com_id > ?");
         $this->deleteCommentStmt = $this->database->prepare("DELETE FROM comment WHERE com_id = ?");
         $this->getNewestComIdStmt= $this->database->prepare("SELECT MAX(com_id) FROM comment WHERE com_recipe = ?");
     }
@@ -91,7 +89,7 @@ class DBHandler
     {
         $this->createConnection();
         $this->awaitNewComment($currentPage, $currentHigh);
-        $this->getCommentStmt->bind_param('s', $currentPage);
+        $this->getCommentStmt->bind_param('si', $currentPage, $currentHigh);
         $this->getCommentStmt->execute();
         return $this->getCommentStmt->get_result();
     }
@@ -106,31 +104,12 @@ class DBHandler
     }
 
     public function awaitNewComment($currentPage, $currentHigh) {
-        \set_time_limit(0);
-        $myfile = fopen("awaitNewCommentLog.txt", "a");
-        fwrite($myfile, "\r\n---Before while---\r\n");
-        $txt = "newestComment: " . $currentHigh . "\r\nMaxComID: " .  $this->getMaxComID($currentPage);
-        fwrite($myfile, $txt);
-        fwrite($myfile, "\r\n---------------------");
-
+        \set_time_limit(0); //Prevents PHP engine to auto close
         while ($currentHigh >= $this->getMaxComID($currentPage)) {
-
-            //Question: will the comparison matter
-            $txt = "----INSIDE WHILE---";
-            fwrite($myfile, $txt);
-            $txt = "newestComment: " . $currentHigh . "\r\nMaxComID: " .  $this->getMaxComID($currentPage);
-            fwrite($myfile, $txt);
-            fwrite($myfile, "\r\n---------------------");
-
             \session_write_close();
             sleep(self::ONE_SECOND);
             \session_start();
 
         }
-//        fwrite($myfile, "\r\nAFTER while\r\n");
-//        $this->newestComment = $this->getMaxComID($currentPage);
-//        $txt = "newestComment: " . $currentHigh . "\r\nMaxComID: " .  $this->getMaxComID($currentPage);
-//        fwrite($myfile, $txt);
-//        fwrite($myfile, "\r\n---------------------");
     }
 }

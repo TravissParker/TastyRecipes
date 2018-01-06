@@ -2,7 +2,7 @@
 
 
 namespace tsrc\View;
-
+//Question: is this class unecessary?
 abstract class RecipeRequestHandler extends RequestHandler
 {
     private $author;

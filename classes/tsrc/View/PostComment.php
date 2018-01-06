@@ -6,28 +6,28 @@ namespace tsrc\View;
 class PostComment extends RequestHandler
 {
     private $author;
-    private $message;
-    private $recipe;
+    private $post;
+    private $currentPage;
 
     public function setAuthor($author)
     {
         $this->author = $author;
     }
 
-    public function setRecipePage($recipePage)
+    public function setCurrentPage($recipePage)
     {
-        $this->recipe = $recipePage;
+        $this->currentPage = $recipePage;
     }
 
-    public function setMessage($message)
+    public function setPost($post)
     {
-        $this->message = $message;
+        $this->post = $post;
     }
 
     protected function doExecute()
     {
         $ctrl = $this->getController();
-        $ctrl->setComment($this->author, $this->message, $this->recipe);
+        $ctrl->setComment($this->author, $this->post, $this->currentPage);
     }
 
 }

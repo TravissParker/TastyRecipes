@@ -1,6 +1,5 @@
 <?php
   include 'resources/fragments/frag-nav.php';
-  include 'resources/function/func-reset-errors.php';
   include 'resources/function/func-fetch-xml.php';
 ?>
 
@@ -19,7 +18,7 @@
 
     <script type="text/javascript" src="../../../jquery-3.2.1.js"></script>
     <script type="text/javascript" src="../../../knockout-3.4.2.js"></script>
-    <script type="text/javascript" src="../../resources/jsscript/ViewModel.js"></script>
+    <script type="text/javascript" src="../../resources/jsscript/ViewModel.js" ></script>
 
 </head>
 <body>
@@ -53,7 +52,7 @@
       </section>
       </div>
 
-<!--    //Fixme: is comment content binded with html that is formated in css?-->
+
     <div id="comment-include">
     <?php include 'resources/fragments/frag-comment-section.php' ?>
     </div>

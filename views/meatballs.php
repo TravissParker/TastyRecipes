@@ -1,6 +1,5 @@
 <?php
   include 'resources/fragments/frag-nav.php';
-  include 'resources/function/func-reset-errors.php';
   include 'resources/function/func-fetch-xml.php';
 ?>
 
@@ -50,6 +49,7 @@
     </section>
     </div>
     <div id="comment-include">
+      <div id="textarea"></div>
         <?php include 'resources/fragments/frag-comment-section.php' ?>
     </div>
   </div>

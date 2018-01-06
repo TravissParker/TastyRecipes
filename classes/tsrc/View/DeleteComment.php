@@ -3,7 +3,7 @@
 
 namespace tsrc\View;
 
-
+//Todo: This is not used anymore?
 class DeleteComment extends RequestHandler
 {
     private $comID;

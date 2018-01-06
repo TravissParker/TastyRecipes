@@ -7,6 +7,8 @@ use tsrc\Exceptions\MissingInputException;
 use tsrc\Exceptions\PasswordException;
 use tsrc\Exceptions\UsernameException;
 use tsrc\Model\Shuttle;
+use tsrc\Util\Constants;
+
 class Signup extends RequestHandler
 {
     private $shuttle;
@@ -48,23 +50,23 @@ class Signup extends RequestHandler
 
             try {
                 $ctrl->registerUser($this->shuttle);
-                return 'Login';
+                return Constants::LOGIN;
             } catch (MissingInputException $e) {
                 $this->addVariable('usernameError', $e->getMessage());
                 $this->addVariable('passwordError', $e->getMessage());
                 $this->addVariable('passwordErrorR', $e->getMessage());
-                return 'Signup';
+                return Constants::SIGNUP;
             } catch (PasswordException $e) {
                 $this->addVariable('passwordMismatch', $e->getMessage());
-                return 'Signup';
+                return Constants::SIGNUP;
             } catch (UsernameException $e) {
                 $this->addVariable('usernameError', $e->getMessage());
-                return 'Signup';
+                return Constants::SIGNUP;
             }
             finally {
                 $this->shuttle = null; //Since password is stored here we set it too null just to be sure
             }
         }
-        return 'Signup';
+        return Constants::SIGNUP;
     }
 }

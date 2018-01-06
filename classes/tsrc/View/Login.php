@@ -41,16 +41,16 @@ class Login extends RequestHandler
                 $ctrl->loginUser($shuttle);
                 $this->session->set(Constants::USERNAME, $shuttle->getUsername());
                 $this->storeUser();
-                return 'index';
+                return Constants::INDEX;
             } catch (MissingInputException $e) {
                 $this->addVariable('usernameError', $e->getMessage());
                 $this->addVariable('passwordError', $e->getMessage());
-                return 'Login';
+                return Constants::LOGIN;
             } catch (CredentialsException $e) {
                 $this->addVariable('loginError', $e->getMessage());
-                return 'Login';
+                return Constants::LOGIN;
             }
         }
-        return 'Login';
+        return Constants::LOGIN;
     }
 }
